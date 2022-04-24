@@ -9,8 +9,17 @@ public class RacingGame {
     private final Lineup lineup;
 
     public RacingGame(String ...carNames) {
+        lineup = makeLineup(carNames);
+    }
+
+    private Lineup makeLineup(String ...carNames) {
         assertDuplicateNames(carNames);
-        lineup = new Lineup(carNames);
+        Lineup lineup = new Lineup();
+        for (String name : carNames) {
+            lineup.addCar(new Car(name));
+        }
+
+        return lineup;
     }
 
     public Lineup getLineup() {

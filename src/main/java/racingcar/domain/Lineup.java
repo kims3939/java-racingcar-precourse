@@ -7,23 +7,22 @@ public class Lineup {
 
     private final List<Car> cars = new ArrayList<>();
 
-    public Lineup(String... carNames) {
-        for (String carName : carNames) {
-            cars.add(new Car(carName));
-        }
+    public void addCar(Car car) {
+        cars.add(car);
     }
 
     public int numberOfCars() {
         return cars.size();
     }
 
-    public RacingReport race(MovingCondition... conditions) {
+    public RacingReport race(MovingConditions conditions) {
         RacingReport racingReport = new RacingReport();
 
-        for (int i = 0; i < cars.size(); i++) {
-            Car car = cars.get(i);
-            Distance distance = car.move(conditions[i]);
+        for(Car car : cars) {
+            MovingCondition condition = conditions.conditionOf(car);
+            Distance distance = car.move(condition);
             racingReport.write(car, distance);
+
         }
 
         return racingReport;
