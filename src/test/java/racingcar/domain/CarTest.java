@@ -2,9 +2,10 @@ package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class CarTest {
 
@@ -74,5 +75,22 @@ public class CarTest {
 
         //then
         assertThat(movement).isEqualTo(Movement.STOP);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"3, 0", "4, 1"})
+    @DisplayName("자동차는 몇번 전진했는지 기록한다")
+    void count_moving_count(int conditionNumber, int distanceAmount) {
+        //given
+        MovingCondition condition = new MovingCondition(conditionNumber);
+        Distance expectedDistance = new Distance(distanceAmount);
+        Car car = new Car("car");
+
+        //when
+        car.move(condition);
+        Distance actualDistance = car.countDistance();
+
+        //then
+        assertThat(actualDistance).isEqualTo(expectedDistance);
     }
 }
