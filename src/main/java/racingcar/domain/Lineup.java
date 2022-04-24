@@ -11,6 +11,10 @@ public class Lineup {
         cars.add(car);
     }
 
+    public Car getAt(int index) {
+        return cars.get(index);
+    }
+
     public int numberOfCars() {
         return cars.size();
     }
