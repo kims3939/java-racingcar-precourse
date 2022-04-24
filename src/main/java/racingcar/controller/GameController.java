@@ -6,6 +6,8 @@ import racingcar.domain.RacingReport;
 import racingcar.view.GameView;
 
 public class GameController {
+
+    private static final String CAR_NAME_DELIMITER = ",";
     private final GameView gameView;
 
     public GameController(GameView gameView) {
@@ -18,7 +20,7 @@ public class GameController {
             RacingGame racingGame = new RacingGame(carNames);
             int numOfTrial = waitingForNumOfTrials();
             RacingReport finalReport = play(racingGame, numOfTrial);
-            printResult(finalReport);
+            gameView.printFinal(finalReport);
         } catch (IllegalArgumentException ex) {
             gameView.printError(ex.getMessage());
         }
@@ -27,7 +29,7 @@ public class GameController {
     private String[] waitingForCarNames() {
         gameView.carNamesEnterMessage();
         String userInput = Console.readLine();
-        return userInput.split(",");
+        return userInput.split(CAR_NAME_DELIMITER);
     }
 
     private int waitingForNumOfTrials() {
@@ -50,9 +52,5 @@ public class GameController {
         }
 
         return report;
-    }
-
-    private void printResult(RacingReport finalReport) {
-        gameView.printFinal(finalReport);
     }
 }

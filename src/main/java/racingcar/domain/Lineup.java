@@ -27,7 +27,6 @@ public class Lineup {
             MovingCondition condition = conditions.conditionOf(car);
             Distance distance = car.move(condition);
             racingReport.write(car, distance);
-
         }
 
         return racingReport;

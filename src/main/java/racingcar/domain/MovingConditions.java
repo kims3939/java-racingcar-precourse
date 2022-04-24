@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MovingConditions {
+
     private final Map<Car, MovingCondition> mapping = new HashMap<>();
 
     public void match(Car car, MovingCondition condition) {

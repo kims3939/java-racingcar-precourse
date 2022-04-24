@@ -3,6 +3,7 @@ package racingcar.domain;
 import java.util.Objects;
 
 public class Distance {
+
     private int amount;
 
     public Distance(int amount) {
@@ -13,6 +14,14 @@ public class Distance {
         amount++;
     }
 
+    public boolean longerThen(Distance longest) {
+        return amount > longest.getAmount();
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+    
     @Override
     public String toString() {
         return "Distance{" +
@@ -35,14 +44,5 @@ public class Distance {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
-    }
-
-
-    public boolean longerThen(Distance longest) {
-        return amount > longest.getAmount();
-    }
-
-    public int getAmount() {
-        return amount;
     }
 }

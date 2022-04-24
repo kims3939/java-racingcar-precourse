@@ -13,13 +13,17 @@ public class RacingReport {
         Distance longest = longestDistance();
         List<Car> winners = new ArrayList<>();
 
-        for(Car car : report.keySet()) {
-            if (report.get(car).equals(longest)) {
-                winners.add(car);
-            }
+        for (Car car : report.keySet()) {
+            addWinner(winners, longest, car);
         }
 
         return winners;
+    }
+
+    private void addWinner(List<Car> winners, Distance longest, Car target) {
+        if (report.get(target).equals(longest)) {
+            winners.add(target);
+        }
     }
 
     public Map<Car, Distance> getReport() {
@@ -32,10 +36,16 @@ public class RacingReport {
 
     private Distance longestDistance() {
         Distance longest = new Distance(0);
-        for (Distance distance :  report.values()) {
-            if (distance.longerThen(longest)) {
-                longest = distance;
-            }
+        for (Distance distance : report.values()) {
+            longest = replaceIfLongerThen(longest, distance);
+        }
+
+        return longest;
+    }
+
+    private Distance replaceIfLongerThen(Distance longest, Distance target) {
+        if (target.longerThen(longest)) {
+            return target;
         }
 
         return longest;
