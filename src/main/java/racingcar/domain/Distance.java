@@ -38,4 +38,11 @@ public class Distance {
     }
 
 
+    public boolean longerThen(Distance longest) {
+        return amount > longest.getAmount();
+    }
+
+    public int getAmount() {
+        return amount;
+    }
 }

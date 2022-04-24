@@ -56,10 +56,10 @@ public class CarTest {
         Car car = new Car("car");
 
         //when
-        Movement movement = car.move(condition);
+        Distance distance = car.move(condition);
 
         //then
-        assertThat(movement).isEqualTo(Movement.FORWARD);
+        assertThat(distance).isEqualTo(new Distance(1));
 
     }
 
@@ -71,10 +71,10 @@ public class CarTest {
         Car car = new Car("car");
 
         //when
-        Movement movement = car.move(condition);
+        Distance distance = car.move(condition);
 
         //then
-        assertThat(movement).isEqualTo(Movement.STOP);
+        assertThat(distance).isEqualTo(new Distance(0));
     }
 
     @ParameterizedTest
@@ -87,8 +87,7 @@ public class CarTest {
         Car car = new Car("car");
 
         //when
-        car.move(condition);
-        Distance actualDistance = car.countDistance();
+        Distance actualDistance = car.move(condition);
 
         //then
         assertThat(actualDistance).isEqualTo(expectedDistance);
