@@ -6,11 +6,14 @@ import java.util.Set;
 
 public class RacingGame {
 
-    private Lineup lineup;
+    private final Lineup lineup;
 
-    public Lineup setLineup(String... carNames) {
+    public RacingGame(String ...carNames) {
         assertDuplicateNames(carNames);
         lineup = new Lineup(carNames);
+    }
+
+    public Lineup getLineup() {
         return lineup;
     }
 
