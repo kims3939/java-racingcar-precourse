@@ -29,4 +29,18 @@ class RacingGameTest {
         //then
         assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("경주 게임은 시도횟수를 전달받고 경기 결과를 반환한다")
+    void report_racing_result() {
+        //given
+        RacingGame racingGame = new RacingGame("car");
+        int numOfTrial = 1;
+
+        //when
+        RacingReport racingReport = racingGame.race(numOfTrial);
+
+        //then
+        assertThat(racingReport).isNotNull();
+    }
 }

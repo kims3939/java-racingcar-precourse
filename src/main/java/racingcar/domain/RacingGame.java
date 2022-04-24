@@ -23,4 +23,8 @@ public class RacingGame {
             throw new IllegalArgumentException();
         }
     }
+
+    public RacingReport race(int numOfTrial) {
+        return new RacingReport();
+    }
 }
