@@ -18,4 +18,12 @@ public class Car {
             throw new IllegalArgumentException();
         }
     }
+
+    public Movement move(MovingCondition condition) {
+        if (condition.isMovable()) {
+            return Movement.FORWARD;
+        }
+
+        return Movement.STOP;
+    }
 }

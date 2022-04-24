@@ -46,4 +46,33 @@ public class CarTest {
         //then
         assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("자동차는 전달받은 조건의 값이 4 이상이면 전진한다")
+    void move_forward() {
+        //given
+        MovingCondition condition = new MovingCondition(4);
+        Car car = new Car("car");
+
+        //when
+        Movement movement = car.move(condition);
+
+        //then
+        assertThat(movement).isEqualTo(Movement.FORWARD);
+
+    }
+
+    @Test
+    @DisplayName("자동차는 전달받은 조건의 값이 3 이하이면 멈춘다")
+    void stop() {
+        //given
+        MovingCondition condition = new MovingCondition(3);
+        Car car = new Car("car");
+
+        //when
+        Movement movement = car.move(condition);
+
+        //then
+        assertThat(movement).isEqualTo(Movement.STOP);
+    }
 }
