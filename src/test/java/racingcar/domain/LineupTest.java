@@ -1,7 +1,10 @@
 package racingcar.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
+
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -35,4 +38,43 @@ class LineupTest {
         assertThat(racingReport.winners()).containsOnly(winner);
     }
 
+    @Test
+    @DisplayName("자동차 라인업은 자동차 개수보다 적은 조건으로 경기를 시작할 수 없다")
+    void invalid_less_conditions() {
+        //given
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Lineup lineup = new Lineup();
+        lineup.addCar(car1);
+        lineup.addCar(car2);
+
+        MovingConditions conditions = new MovingConditions();
+        conditions.match(car1, new MovingCondition(3));
+
+        //when
+        Throwable throwable = catchThrowable(() -> lineup.race(conditions));
+
+        //then
+        assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("자동차 라인업은 자동차 개수보다 많은 조건으로 경기를 시작할 수 없다")
+    void invalid_more_conditions() {
+        //given
+        Car car1 = new Car("car1");
+        Car car2 = new Car("car2");
+        Lineup lineup = new Lineup();
+        lineup.addCar(car1);
+
+        MovingConditions conditions = new MovingConditions();
+        conditions.match(car1, new MovingCondition(3));
+        conditions.match(car2, new MovingCondition(4));
+
+        //when
+        Throwable throwable = catchThrowable(() -> lineup.race(conditions));
+
+        //then
+        assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
+    }
 }

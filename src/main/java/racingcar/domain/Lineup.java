@@ -16,8 +16,9 @@ public class Lineup {
     }
 
     public RacingReport race(MovingConditions conditions) {
-        RacingReport racingReport = new RacingReport();
+        assertConditions(conditions);
 
+        RacingReport racingReport = new RacingReport();
         for(Car car : cars) {
             MovingCondition condition = conditions.conditionOf(car);
             Distance distance = car.move(condition);
@@ -26,5 +27,11 @@ public class Lineup {
         }
 
         return racingReport;
+    }
+
+    private void assertConditions(MovingConditions conditions) {
+        if (conditions.numberOfConditions() != cars.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 }

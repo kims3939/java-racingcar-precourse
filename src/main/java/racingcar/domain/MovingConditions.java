@@ -13,4 +13,8 @@ public class MovingConditions {
     public MovingCondition conditionOf(Car car) {
         return mapping.get(car);
     }
+
+    public int numberOfConditions() {
+        return mapping.size();
+    }
 }
