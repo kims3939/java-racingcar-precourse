@@ -33,14 +33,8 @@ public class RacingGame {
         }
     }
 
-    public RacingReport race(int numOfTrial) {
-        RacingReport report = new RacingReport();
-
-        for (int trial = 0; trial < numOfTrial; trial++) {
-            MovingConditions conditions = ConditionGenerator.generate(lineup);
-            report = lineup.race(conditions);
-        }
-
-        return report;
+    public RacingReport race() {
+        MovingConditions conditions = ConditionGenerator.generate(lineup);
+        return lineup.race(conditions);
     }
 }

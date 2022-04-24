@@ -35,10 +35,9 @@ class RacingGameTest {
     void report_racing_result() {
         //given
         RacingGame racingGame = new RacingGame("car");
-        int numOfTrial = 1;
 
         //when
-        RacingReport racingReport = racingGame.race(numOfTrial);
+        RacingReport racingReport = racingGame.race();
 
         //then
         assertThat(racingReport).isNotNull();

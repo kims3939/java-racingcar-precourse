@@ -22,6 +22,10 @@ public class RacingReport {
         return winners;
     }
 
+    public Map<Car, Distance> getReport() {
+        return report;
+    }
+
     public void write(Car car, Distance distance) {
         report.put(car, distance);
     }
